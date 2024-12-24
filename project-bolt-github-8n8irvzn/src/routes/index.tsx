@@ -6,7 +6,10 @@ import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/auth/LoginPage';
 import UserDashboard from '../pages/dashboard/UserDashboard';
 import AdminDashboard from '../pages/dashboard/AdminDashboard';
-import TaskEntry from '../pages/dashboard/TaskEntry';
+import TasksManagement from '../pages/admin/TasksManagement';
+import UsersManagement from '../pages/admin/UsersManagement';
+import TaskForm from '../pages/admin/TaskForm';
+import DataEntryForm from '../components/dataEntry/DataEntryForm';
 import Profile from '../pages/dashboard/Profile';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -58,7 +61,17 @@ export default function AppRoutes() {
               <UserDashboard />
           }
         />
-        <Route path="/tasks/:taskId" element={<TaskEntry />} />
+        
+        {/* Admin routes */}
+        <Route element={<AdminRoute><></></AdminRoute>}>
+          <Route path="/tasks" element={<TasksManagement />} />
+          <Route path="/tasks/new" element={<TaskForm />} />
+          <Route path="/tasks/:taskId/edit" element={<TaskForm />} />
+          <Route path="/users" element={<UsersManagement />} />
+        </Route>
+
+        {/* User routes */}
+        <Route path="/tasks/:taskId" element={<DataEntryForm />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
 
